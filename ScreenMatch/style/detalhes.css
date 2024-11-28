@@ -5,7 +5,7 @@ body {
             #04254fc4 80%,
             #409ecdcb 100%);
     padding: 5em;
-    height: 100%;
+    height: 100vh;
     min-height: 100vh;
     /* Defina a altura como 100vh para ocupar toda a tela */
 }

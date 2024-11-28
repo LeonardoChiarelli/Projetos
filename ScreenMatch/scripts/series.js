@@ -10,7 +10,7 @@ const fichaDescricao = document.getElementById('ficha-descricao');
 function carregarTemporadas() {
     getDados(`/series/${serieId}/temporadas/todas`)
         .then(data => {
-            const temporadasUnicas = [...new Set(data.map(temporada => temporada.temporada))];
+            const temporadasUnicas = [...new Set(data.map(temporada => temporada.season))];
             listaTemporadas.innerHTML = ''; // Limpa as opções existentes
 
             const optionDefault = document.createElement('option');
@@ -39,17 +39,17 @@ function carregarTemporadas() {
 function carregarEpisodios() {
     getDados(`/series/${serieId}/temporadas/${listaTemporadas.value}`)
         .then(data => {
-            const temporadasUnicas = [...new Set(data.map(temporada => temporada.temporada))];
+            const temporadasUnicas = [...new Set(data.map(temporada => temporada.season))];
             fichaSerie.innerHTML = ''; 
             temporadasUnicas.forEach(temporada => {
                 const ul = document.createElement('ul');
                 ul.className = 'episodios-lista';
 
-                const episodiosTemporadaAtual = data.filter(serie => serie.temporada === temporada);
+                const episodiosTemporadaAtual = data.filter(serie => serie.season === temporada);
 
                 const listaHTML = episodiosTemporadaAtual.map(serie => `
                     <li>
-                        ${serie.numeroEpisodio} - ${serie.title}
+                        ${serie.episode} - ${serie.title}
                     </li>
                 `).join('');
                 ul.innerHTML = listaHTML;
